@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.proyekaplikasidonasi.MainActivity
 import com.example.proyekaplikasidonasi.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -86,7 +87,7 @@ class ProfileSettingFragment : AppCompatActivity() {
                 uploadGambar(userId)
                 Log.d("Sesudah Upload","")
                 Toast.makeText(this@ProfileSettingFragment,"Berhasil Mengubah Profile", Toast.LENGTH_LONG).show()
-                val intent = Intent(this@ProfileSettingFragment, ProfileSettingFragment::class.java)
+                val intent = Intent(this@ProfileSettingFragment, MainActivity::class.java)
                 startActivity(intent)
             }
         }
@@ -103,7 +104,7 @@ class ProfileSettingFragment : AppCompatActivity() {
     private fun uploadGambar(User: String){
         mAuth = FirebaseAuth.getInstance()
         val userId = mAuth.currentUser?.email.toString()
-        if(filepath != null){
+        if(this::filepath.isInitialized){
             val context = this@ProfileSettingFragment
             var pd = ProgressDialog(context)
             pd.setTitle("Uploading")

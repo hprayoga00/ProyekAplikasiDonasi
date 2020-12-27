@@ -104,7 +104,7 @@ class adapterDonasi(private val listDonasi: ArrayList<Donasi>) : RecyclerView.Ad
             }
 
         holder.txtJudulDonasi.setText(dataDonasi.judul)
-        var progressPercent = dataDonasi.jumlahDonasiSaatIni.toInt() * 100 / dataDonasi.targetDonasi.toInt()
+        var progressPercent = (dataDonasi.jumlahDonasiSaatIni.toFloat() * 100 / dataDonasi.targetDonasi.toFloat()).toInt()
         holder.progressBar.progress = progressPercent
 
         // Convert uang ke rupiah

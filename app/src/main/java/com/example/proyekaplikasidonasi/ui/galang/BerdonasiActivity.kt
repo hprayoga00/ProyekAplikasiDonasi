@@ -1,10 +1,12 @@
 package com.example.proyekaplikasidonasi.ui.galang
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
+import com.example.proyekaplikasidonasi.MainActivity
 import com.example.proyekaplikasidonasi.R
 import com.example.proyekaplikasidonasi.ui.donasi.Donasi
 import com.google.firebase.auth.FirebaseAuth
@@ -89,10 +91,13 @@ class BerdonasiActivity : AppCompatActivity() {
                         current_user.update("balance", current_money_user.toString())
 
                         Toast.makeText(this@BerdonasiActivity, "Donasi berhasil terima kasih", Toast.LENGTH_SHORT).show()
+
                         nama_donatur.setText("")
                         donated_money.setText("")
                         komen_donasi.setText("")
 
+                        val intent = Intent(this@BerdonasiActivity, MainActivity::class.java)
+                        startActivity(intent)
                     } else {
                         Toast.makeText(this@BerdonasiActivity ,"Uang dibawah batas minimal donasi", Toast.LENGTH_SHORT).show()
                     }
