@@ -41,15 +41,20 @@ class ProfileTopupActivity : AppCompatActivity() {
         profile_btn_topup.setOnClickListener{
             if(profile_nominal.text.toString() != ""){
                 var nominal = profile_nominal.text.toString().toInt()
-                var total = saldo.toInt() + nominal
-                db.collection(dbCol).document(userId)
-                    .get()
-                    .addOnSuccessListener {
-                        db.collection(dbCol).document(userId).update("balance", total.toString())
-                    }
-                Toast.makeText(this@ProfileTopupActivity, "Berhasil Mengisi Saldo",Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@ProfileTopupActivity, MainActivity::class.java)
-                startActivity(intent)
+                if(nominal >= 20000){
+                    var total = saldo.toInt() + nominal
+                    db.collection(dbCol).document(userId)
+                        .get()
+                        .addOnSuccessListener {
+                            db.collection(dbCol).document(userId).update("balance", total.toString())
+                        }
+                    Toast.makeText(this@ProfileTopupActivity, "Berhasil Mengisi Saldo",Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@ProfileTopupActivity, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else{
+                    Toast.makeText(this@ProfileTopupActivity, "Minimal Top Up Rp. 20.000",Toast.LENGTH_SHORT).show()
+                }
             }else{
                 Toast.makeText(this@ProfileTopupActivity, "Isi Nominal",Toast.LENGTH_SHORT).show()
             }
